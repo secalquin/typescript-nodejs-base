@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import morgan from "morgan";
+import actuator from "express-actuator";
 
 interface IServerConfig {
   server_port: string | number;
@@ -21,22 +22,30 @@ class Server implements IServer {
     this.env = environment;
 
     this.middlewares();
-    this.logHttpWMorgan();
+    this.logHttpMorgan();
     this.routes();
   }
 
   private middlewares() {
     this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: false }));
+    this.app.use(
+      actuator({
+        basePath: "/actuator",
+        infoGitMode: "full",
+        infoDateFormat: "YYYY-MM-DD HH:mm:ss",
+      })
+    );
   }
 
-  private logHttpWMorgan() {
+  private logHttpMorgan() {
     if (this.env === "development") {
       this.app.use(morgan("dev"));
     }
   }
 
   private routes() {
-    this.app.use("/", (req, res) => {
+    this.app.use("/example", (req, res) => {
       res.json({ message: "Hello World!" });
     });
   }
