@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import actuator from "express-actuator";
+import routes from "./routes";
 
 interface IServerConfig {
   server_port: string | number;
@@ -44,10 +45,8 @@ class Server implements IServer {
     }
   }
 
-  private routes() {
-    this.app.use("/example", (req, res) => {
-      res.json({ message: "Hello World!" });
-    });
+  routes(): void {
+    this.app.use("/api", routes);
   }
 
   start(callback: () => void) {

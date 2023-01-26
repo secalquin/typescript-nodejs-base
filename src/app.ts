@@ -1,7 +1,7 @@
+import environments from "./config/environments";
 import Server from "./config/server";
-import env from "./config/environments";
 
-const { environment, server_port } = env;
+const { environment, server_port } = environments;
 
 const server = new Server({ environment, server_port });
 
