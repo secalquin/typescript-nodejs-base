@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import actuator from "express-actuator";
-import routes from "./routes";
+import routes from "../routes/index.routes";
 
 interface IServerConfig {
   server_port: string | number;
@@ -45,7 +45,7 @@ class Server implements IServer {
     }
   }
 
-  routes(): void {
+  private routes(): void {
     this.app.use("/api", routes);
   }
 

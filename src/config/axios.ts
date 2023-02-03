@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 interface IAxiosResponse {
   error: boolean;
@@ -8,7 +8,7 @@ interface IAxiosResponse {
 }
 
 const api = axios.create({
-  baseURL: 'https://api.escuelajs.co/api/v1',
+  baseURL: "https://api.escuelajs.co/api/v1",
 });
 
 // create a request and response interceptor to return custom error messages
