@@ -1,16 +1,8 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import actuator from "express-actuator";
-import routes from "../routes/index.routes";
-
-interface IServerConfig {
-  server_port: string | number;
-  environment: string;
-}
-
-interface IServer {
-  start(callback: () => void): void;
-}
+import routes from "@routes/mainRoutes";
+import { IServer, IServerConfig } from "@models/Server";
 
 class Server implements IServer {
   private app: Application;
