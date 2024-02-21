@@ -1,5 +1,5 @@
+import Server from "@config/server";
 import environments from "./config/environments";
-import Server from "./config/server";
 
 const { environment, server_port } = environments;
 
